@@ -8,23 +8,14 @@ import PoangRad from './components/PoangRad.vue';
 const resultat = ref({})
 const knappar = ref(['Sten', 'Sax', 'Påse'])
 const vinnare = ref('')
+const reset = ref(true)
 
 function hittaVinnare(valdaKnappar) {
     vinnare.value = ''
+    reset.value = false
     let spelare = knappar.value.indexOf(valdaKnappar.spelare)
     let dator = knappar.value.indexOf(valdaKnappar.dator)
     resultat.value = { spelare: spelare, dator: dator }
-}
-
-function reset() {
-    score.value.spelare = 0
-    score.value.dator = 0
-    resultat.value = "Let´s begin!"
-    let buttons = document.getElementsByClassName('alternativ')
-    for (let b of buttons) {
-        b.classList.remove('spelarval')
-        b.classList.remove('datorval')
-    }
 }
 
 function raknaPoang(v) {
@@ -37,11 +28,11 @@ function raknaPoang(v) {
         <h1>Sten, sax, påse</h1>
     </header>
     <main>
-        <KnappRad :knappar="knappar" @valda-knappar="hittaVinnare" />
-        <ResultatRad :valda-knappar="resultat" @vinnare="raknaPoang" />
-        <PoangRad :vinnare="vinnare" />
+        <KnappRad :knappar="knappar" :reset="reset" @valda-knappar="hittaVinnare" />
+        <ResultatRad :valda-knappar="resultat" :reset="reset" @vinnare="raknaPoang" />
+        <PoangRad :vinnare="vinnare" :reset="reset" />
         <div class="score">
-            <button id="nolla" @click="reset">Nollställ poängen</button>
+            <button id="nolla" @click="reset = true">Nollställ poängen</button>
         </div>
     </main>
 </template>
