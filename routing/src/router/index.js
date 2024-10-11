@@ -15,14 +15,28 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
+      component: () => import('../views/AboutView.vue'),
+      meta: {
+        title: 'About'
+      }
     },
     {
       path: '/my',
       name: 'my view',
       component: () => import('../views/MyView.vue')
+    },
+    // Catcher in the rye
+    {
+      path: '/:catchAll(.*)',
+      component: () => import('@/views/NoShow.vue'),
+      meta: {
+        title: '404'
+      }
     }
   ]
+})
+router.beforeEach((to) => {
+  document.title = to.meta?.title ?? 'Default Title'
 })
 
 export default router

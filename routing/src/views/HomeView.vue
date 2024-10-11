@@ -19,5 +19,13 @@ onMounted(() => {
             Denna sidan har visats:
             <b>{{ views }}</b> gånger
         </p>
+        <ul>
+            <li>
+                <a href="/my">Min sida</a>
+            </li>
+            <li>
+                <RouterLink to="/my">Min sida</RouterLink>
+            </li>
+        </ul>
     </main>
 </template>
