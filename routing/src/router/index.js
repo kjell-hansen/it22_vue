@@ -26,9 +26,15 @@ const router = createRouter({
       component: () => import('../views/MyView.vue')
     },
     {
-      path: '/users',
-      name: 'Användare',
+      path: '/user',
+      name: 'Användarlista',
       component: () => import('../views/UsersView.vue')
+    },
+    {
+      path: '/user/:id',
+      name: 'Användare',
+      component: () => import('../views/SingleUserView.vue'),
+      props: true
     },
     // Catcher in the rye
     {
