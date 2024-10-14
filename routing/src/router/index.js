@@ -25,6 +25,11 @@ const router = createRouter({
       name: 'my view',
       component: () => import('../views/MyView.vue')
     },
+    {
+      path: '/users',
+      name: 'Användare',
+      component: () => import('../views/UsersView.vue')
+    },
     // Catcher in the rye
     {
       path: '/:catchAll(.*)',
