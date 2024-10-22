@@ -1,14 +1,12 @@
 <script setup>
 import router from '@/router';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 const location = ref({ name: '', position: { lat: 0, long: 0 }, default: false })
-const locationsList = ref([
-    { name: 'Mariehamn', position: { lat: 60, long: 20 }, default: false },
-    { name: 'Stockholm', position: { lat: 59.32, long: 18.32 }, default: true },
-    { name: 'London', position: { lat: 51.5, long: -0.1 }, default: false },
-    { name: 'Cape Town', position: { lat: -34, long: 18.5 }, default: false },
-])
+const locationsList = ref([])
+onMounted(() => {
+    locationsList.value = JSON.parse(localStorage.getItem("locations"))
+})
 
 function saveLocation() {
     let locations = locationsList.value.filter(loc => {
@@ -18,6 +16,7 @@ function saveLocation() {
     locationsList.value = locations
     setLocation(location.value, false)
     resetLocation()
+    localStorage.setItem("locations", JSON.stringify(locationsList.value))
 }
 
 function resetLocation() {
@@ -31,6 +30,7 @@ function removeLocation(location) {
     if (location.default && locationsList.value.length > 0) {
         locationsList.value[0].default = true
     }
+    localStorage.setItem("locations", JSON.stringify(locationsList.value))
 }
 
 function setLocation(location, navigate) {
@@ -40,8 +40,9 @@ function setLocation(location, navigate) {
     locationsList.value.map(itm => {
         itm.default = (itm === location)
     })
+    localStorage.setItem("locations", JSON.stringify(locationsList.value))
     if (navigate) {
-        //        router.push(`/${location.name}`)
+        router.push(`/forecast/${location.name}`)
     }
 }
 </script>

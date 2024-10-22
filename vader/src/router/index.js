@@ -10,6 +10,12 @@ const router = createRouter({
       component: ForecastView,
     },
     {
+      path: '/forecast/:location',
+      name: 'forecast',
+      component: ForecastView,
+      props: true,
+    },
+    {
       path: '/locations',
       name: 'Locations',
       // route level code-splitting
