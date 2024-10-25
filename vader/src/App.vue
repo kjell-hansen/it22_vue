@@ -1,9 +1,13 @@
 <script setup>
+import { ref } from 'vue';
+import BurgerMenu from './components/BurgerMenu.vue';
+
+const menuActive = ref(false)
 </script>
 
 <template>
     <header>
-
+        <BurgerMenu @toggle-menu="menuActive = !menuActive" :active="menuActive" />
         <nav>
             <RouterLink to="/">Home</RouterLink>
             <RouterLink to="/locations">Locations</RouterLink>
