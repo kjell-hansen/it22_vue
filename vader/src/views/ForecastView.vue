@@ -1,4 +1,5 @@
 <script setup>
+import CurrentResult from '@/components/CurrentResult.vue';
 import ForecastResult from '@/components/ForecastResult.vue';
 import { getForecast } from '@/services/forecastService';
 import { ref, watchEffect } from 'vue';
@@ -39,6 +40,9 @@ watchEffect(() => {
         <h2>{{ currentLocation.name }}</h2>
         <p class="location">Lat: <span>{{ currentLocation.position.lat.toFixed(3) }}</span></p>
         <p class="location">Long: <span> {{ currentLocation.position.long.toFixed(3) }}</span></p>
+        <h3>Current</h3>
+        <CurrentResult :location="props.location" />
+        <h3>Forecasts</h3>
         <ForecastResult :forecast="info" />
     </template>
 </template>
