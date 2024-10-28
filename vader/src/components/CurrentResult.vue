@@ -14,9 +14,15 @@ watchEffect(() => {
     loading.value = true
     let locationsList = JSON.parse(localStorage.getItem("locations"))
 
-    currentLocation.value = locationsList.find(loc => {
-        return loc.name.toLocaleLowerCase() === props.location.toLocaleLowerCase()
-    })
+    if (props.location) {
+        currentLocation.value = locationsList.find(loc => {
+            return loc.name.toLocaleLowerCase() === props.location.toLocaleLowerCase()
+        })
+    } else {
+        currentLocation.value = locationsList.find(loc => {
+            return loc.default
+        })
+    }
     getCurrent(currentLocation.value)
         .then(response => {
             weather.value = response

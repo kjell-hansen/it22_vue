@@ -4,7 +4,7 @@ import ForecastResult from '@/components/ForecastResult.vue';
 import { getForecast } from '@/services/forecastService';
 import { ref, watchEffect } from 'vue';
 
-const currentLocation = ref({ lat: 60.0, long: 20.0, name: "Nuvarande position" })
+const currentLocation = ref({ position: { lat: 60.0, long: 20.0 }, name: "Nuvarande position", default: true })
 const info = ref({})
 const props = defineProps(['location'])
 watchEffect(() => {
