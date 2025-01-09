@@ -6,6 +6,7 @@ export const useGamesStore = defineStore('game', () => {
   const alternatives = ref(['sten', 'sax', 'påse'])
   const message = ref('Dags för spel')
   const computerChoise = ref(-1)
+  const reset = ref(true)
 
   function updateMessage(winner) {
     if (winner === 'user') {
@@ -18,6 +19,7 @@ export const useGamesStore = defineStore('game', () => {
   }
 
   function userChoise(choise) {
+    reset.value = false
     computerChoise.value = Math.floor(Math.random() * alternatives.value.length)
     determineWinner(choise, computerChoise.value)
   }
@@ -46,5 +48,11 @@ export const useGamesStore = defineStore('game', () => {
     }
   }
 
-  return { score, alternatives, message, computerChoise, userChoise }
+  function nollStall() {
+    reset.value = true
+    score.value.user = 0
+    score.value.computer = 0
+    message.value = 'Dags för spel...!'
+  }
+  return { score, alternatives, message, computerChoise, reset, userChoise, nollStall }
 })

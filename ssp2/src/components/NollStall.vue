@@ -1,6 +1,13 @@
-<script setup></script>
+<script setup>
+import { useGamesStore } from '@/stores/gameStore';
+
+
+function nollstall() {
+  useGamesStore().nollStall()
+}
+</script>
 <template>
-  <button class="nollstall">Nollstall</button>
+  <button class="nollstall" @click="nollstall">Nollstall</button>
 </template>
 <style scoped>
 .nollstall {
