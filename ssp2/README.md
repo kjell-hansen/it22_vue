@@ -1,14 +1,10 @@
-# ssp2
+# ssp2 - Rock paper scissors, extended version
 
-This template should help get you started developing with Vue 3 in Vite.
+## Prerequisits
+Install [node](https://nodejs.org/en/download/) Version 22 LTS.
 
-## Recommended IDE Setup
+Check your install with node -v && npm -v
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
 
 ## Project Setup
 
@@ -28,8 +24,14 @@ npm run dev
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+This will generate them into `dist` folder.
 
-```sh
-npm run lint
+### An example for serving static files:
+
+Use npm package called serve to serve the project in port 5000:
+
+```sh  
+install: npm install -g serve 
+serve: serve -s -l 8080 dist
 ```
+Test that the project is running by going to http://localhost:8080
